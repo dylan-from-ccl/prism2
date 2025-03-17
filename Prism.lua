@@ -184,14 +184,14 @@ function PrismCore.Logic.CommonFunctions:Write(Key, ...)
 	if #Lines > MaxLines then
 		-- Truncate to maximum allowed lines
 		Lines = { unpack(Lines, 1, MaxLines) }
-		table.insert(Lines, "... (max. lines reached)")
+		table.insert(Lines, "... (max. lines reached for a standard app)")
 	end
 
-	-- Combine the header and message lines
+	-- Combine the header and message lines based on the number of lines in the message
 	local PlatformPrefix = string.sub(PrismCore.Logic.CommonFunctions:GetPlatform(), 1, 1)
-	local LogHeader = string.format("🔒 [%s] %s :::", PlatformPrefix, AppName)
+	local LogHeader = string.format("🔒 [%s] %s:::", PlatformPrefix, AppName)
 	local FormattedMessage = table.concat(Lines, "\n")
-	local FullLogEntry = LogHeader .. "\n" .. FormattedMessage
+	local FullLogEntry = #Lines > 1 and (LogHeader .. "\n" .. FormattedMessage) or (LogHeader .. " " .. FormattedMessage)
 
 	-- Log the combined entry only once
 	warn(FullLogEntry)
