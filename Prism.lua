@@ -52,7 +52,7 @@
 		Kernel = { -- Core functionality and critical operations
 			Version = "2.00007b",
 			DriverManagement = {
---[[/!@@]]		AllowedFingerprints = {"SecureDriverPhrase123"},
+--[[/!@@]]		AllowedFingerprints = {""},
 				Signed = {}, -- Tracks registered drivers
 			},
 			Security = {}, -- Security-related configurations
